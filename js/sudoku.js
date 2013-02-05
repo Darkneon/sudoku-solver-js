@@ -404,7 +404,7 @@ function Sudoku() {
     }
 
     function getAvailable(matrix, cell, avail) {
-        return self.getAvailablefunction(matrix, cell, avail);
+        return self.getAvailable(matrix, cell, avail);
     }
 
     // this is the actual solver. it implements a backtracking algorithm in
