@@ -118,6 +118,8 @@ var timeDiff  =  {
 // The Sudoku class stores the matrix array and implements the game logic.
 // Instantiation of this class will automatically generate a new puzzle.
 function Sudoku() {
+    var self = this;
+
     // 'private' methods...
 
     // stores the 9x9 game data. the puzzle data is stored with revealed
@@ -401,6 +403,9 @@ function Sudoku() {
         return j;
     }
 
+    function getAvailable(matrix, cell, avail) {
+        return self.getAvailablefunction(matrix, cell, avail);
+    }
 
     // this is the actual solver. it implements a backtracking algorithm in
     // which it randomly selects numbers to try in each cell. it starts
