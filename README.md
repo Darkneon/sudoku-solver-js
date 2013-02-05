@@ -4,7 +4,7 @@
 
 This is an exercise used for a tutorial on backtracking for SCS Concordia. Students must implement the solveFast() function and improve the naive backtracking solution using simple heuristic(s).  
 
-The code is a modification on the work of ![David J. Rager](http://blog.fourthwoods.com/2011/02/05/sudoku-in-javascript/).
+The code is a modification on the work of [David J. Rager](http://blog.fourthwoods.com/2011/02/05/sudoku-in-javascript/).
 
 ## Screenshots
 
