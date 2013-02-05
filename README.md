@@ -10,6 +10,7 @@ The code is a modification on the work of [David J. Rager](http://blog.fourthwoo
 
 ![sudoku](https://raw.github.com/Darkneon/sudoku-solver-js/master/sudoku.png)
 
+![sudoku solved](https://raw.github.com/Darkneon/sudoku-solver-js/master/sudoku-solved.png)
 ## License
 
 You are free to reuse and/or modify this code however you like. 
