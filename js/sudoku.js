@@ -404,7 +404,7 @@ function Sudoku() {
     }
 
     function getAvailable(matrix, cell, avail) {
-        return self.getAvailablefunction(matrix, cell, avail);
+        return self.getAvailable(matrix, cell, avail);
     }
 
     // this is the actual solver. it implements a backtracking algorithm in
@@ -481,37 +481,69 @@ function Sudoku() {
     // Solve Faster
     //---------------------------------------------------------------
     function getNextCellFast(matrix) {
-        return -1;
+        var cell = -1, n = 10, i, j;
+        var avail = new Array(9);
+        avail.clear();
+
+        for (i = 0; i < 81; i++) {
+            if (matrix[i] == 0) {
+                j = getAvailable(matrix, i, null);
+
+                if (j < n) {
+                    n = j;
+                    cell = i;
+                }
+
+                if (n == 1)
+                    break;
+            }
+        }
+
+        return cell;
     }
     
     function isASolutionFast(cell) {
         if (cell == -1) { return 1; }
         else { return 0; }
     }
+    
+    function constructCandidatesFast(matrix, cell) {
+        var result      = new Array();
+        var availBuffer = new Array(9);
 
-    function constructCandidatesFast() {
-        var result = new Array();
-        for (var i = 1; i <= 9; i++) {
-            result.push(0);
+        var count = getAvailable(matrix, cell, availBuffer);
+        
+        for (var i = 0; i < count; i++) {
+            result.push(availBuffer[i]);
         }
         return result;
     }
-    
+
     function makeMoveFast(matrix, cell, candidate) {
+        matrix[cell] = candidate;
     }
 
     function unmakeMoveFast(matrix, cell) {
+        matrix[cell] = 0;
     } 
     
     this.solveFaster = function(matrix) {
-        alert("Do me");
         var cell = getNextCellFast(matrix);
+        if (isASolutionFast(cell) == 1) {
+            this.matrix.assign(matrix);
+            return 1;
+        }
 
-        var candidates = constructCandidatesFast();
+        var candidates = constructCandidatesFast(matrix, cell);
         for (var i = 0; i != candidates.length; i++) {
             this.movesMade += 1;
-            makeMoveFast(matrix, cell, candidates[i]);
-            unmakeMoveFast(matrix, cell);
+            if (this.checkVal(Math.floor(cell / 9), cell % 9, candidates[i]) === true) {
+                makeMoveFast(matrix, cell, candidates[i]);
+                
+                if (this.solveFaster(matrix) == 1) { return 1; }
+
+                unmakeMoveFast(matrix, cell);            
+            }
         }
 
         return 0;
